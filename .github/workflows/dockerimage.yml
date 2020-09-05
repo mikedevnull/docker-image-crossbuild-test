@@ -9,6 +9,7 @@ on:
 
 env:
   IMAGE_NAME: docker-image-crossbuild-test/docker-test
+  TARGET_PLATFORMS: linux/arm/v7,linux/amd64
 
 jobs:
   build:
@@ -63,6 +64,6 @@ jobs:
         run: |
           docker buildx build \
           --output type=image,name=${{ steps.prepare.outputs.docker_image }},push=true \
-          --platform linux/arm/v7 linux/amd64
+          --platform $TARGET_PLATFORMS
           --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
           --file Dockerfile .
