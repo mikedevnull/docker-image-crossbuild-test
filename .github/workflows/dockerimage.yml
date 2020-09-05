@@ -61,7 +61,7 @@ jobs:
       - name: Build and push with buildx
         if: success()
         run: |
-          docker buildx buold \
+          docker buildx build \
           --output type=image,name=${{ steps.prepare.outputs.docker_image }},push=true \
           --platform linux/arm/v7 linux/amd64
           --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
