@@ -56,7 +56,7 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker buildx build --output "type=image,push=true" $IMAGE_NAME:$VERSION
+          docker buildx build --output "type=image,push=true" $IMAGE_NAME:$VERSION  --tag $IMAGE_NAME .
 
   build:
 
