@@ -8,7 +8,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: docker-image-crossbuild-test/dokcer-test
+  IMAGE_NAME: docker-image-crossbuild-test/docker-test
 
 jobs:
   cross-build:
@@ -32,7 +32,7 @@ jobs:
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
       - name: Build image
-        run: docker buildx build --platform linux/arm/v7 . --file Dockerfile --tag $IMAGE_NAME
+        run: docker buildx build --platform linux/arm/v7 . --file Dockerfile --tag $IMAGE_NAME --push
 
       - name: Log into GitHub Container Registry
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
